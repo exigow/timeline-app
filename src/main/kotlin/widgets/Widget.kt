@@ -1,0 +1,8 @@
+package widgets
+
+
+interface Widget {
+
+
+
+}
