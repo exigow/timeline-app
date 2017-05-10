@@ -11,7 +11,7 @@ object ApplicationEntry {
 
   private fun createConfig(): Lwjgl3ApplicationConfiguration {
     val config = Lwjgl3ApplicationConfiguration()
-    config.setWindowedMode(800, 600)
+    config.setWindowedMode(1280, 768)
     config.useOpenGL3(true, 3, 2)
     config.setResizable(false)
     return config

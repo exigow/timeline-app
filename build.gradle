@@ -26,5 +26,5 @@ dependencies {
   compile "com.kotcrab.vis:vis-ui:1.3.0"
   compile "io.github.libktx:ktx-app:1.9.6-b2"
   compile "io.github.libktx:ktx-vis:1.9.6-b2"
-  testCompile 'org.testng:testng:+'
+  //testCompile 'org.testng:testng:+'
 }
