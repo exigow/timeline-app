@@ -1,7 +1,0 @@
-package system
-
-interface Socket {
-
-
-
-}
