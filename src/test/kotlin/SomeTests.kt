@@ -1,8 +1,8 @@
-import system.nodes.ValueNode
 import system.nodes.AddNode
 import system.nodes.MultiplyNode
+import system.nodes.ValueNode
 
-object Test {
+object SomeTests {
 
   @JvmStatic
   fun main(args: Array<String>) {

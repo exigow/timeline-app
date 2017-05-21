@@ -12,19 +12,36 @@ buildscript {
   }
 }
 
-apply plugin: 'kotlin'
+allprojects {
 
-repositories {
-  mavenCentral()
-}
+  apply plugin: 'kotlin'
+  apply plugin: "idea"
 
-dependencies {
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  compile "com.badlogicgames.gdx:gdx:1.9.6"
-  compile "com.badlogicgames.gdx:gdx-backend-lwjgl3:1.9.6"
-  compile "com.badlogicgames.gdx:gdx-platform:1.9.6:natives-desktop"
-  compile "com.kotcrab.vis:vis-ui:1.3.0"
-  compile "io.github.libktx:ktx-app:1.9.6-b2"
-  compile "io.github.libktx:ktx-vis:1.9.6-b2"
-  //testCompile 'org.testng:testng:+'
+  sourceSets {
+    main {
+      kotlin {
+        srcDir "src/main/kotlin"
+      }
+    }
+  }
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "com.badlogicgames.gdx:gdx:1.9.6"
+    compile "com.badlogicgames.gdx:gdx-backend-lwjgl3:1.9.6"
+    compile "com.badlogicgames.gdx:gdx-platform:1.9.6:natives-desktop"
+    compile "com.kotcrab.vis:vis-ui:1.3.0"
+    compile "io.github.libktx:ktx-app:1.9.6-b2"
+    compile "io.github.libktx:ktx-vis:1.9.6-b2"
+    testCompile 'org.testng:testng:+'
+  }
+
+  test {
+    useTestNG()
+  }
+
 }
