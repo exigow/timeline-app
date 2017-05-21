@@ -1,4 +1,4 @@
-package system.nodes.operators
+package system.nodes
 
 
 class AddNode : OperatorNode() {

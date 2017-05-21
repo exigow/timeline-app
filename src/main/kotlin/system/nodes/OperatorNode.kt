@@ -1,6 +1,5 @@
-package system.nodes.operators
+package system.nodes
 
-import system.nodes.Node
 import system.sockets.InputSocket
 import system.sockets.OutputSocket
 

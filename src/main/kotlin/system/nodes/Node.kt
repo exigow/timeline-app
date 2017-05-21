@@ -13,8 +13,14 @@ interface Node {
 
   fun valueOf(name: String) = outputs()[name]!!.value()
 
-  fun inputOf(name: String) = inputs()[name]!!
+  fun get(name: String) = outputs()[name]!!
 
-  fun outputOf(name: String) = outputs()[name]!!
+  fun get(): OutputSocket {
+    if (outputs().size == 1)
+      return outputs().values.iterator().next()
+    throw RuntimeException()
+  }
+
+  fun connect(pair: Pair<String, OutputSocket>) = inputs()[pair.first]!!.connect(pair.second)
 
 }

@@ -1,21 +1,21 @@
 import system.nodes.ValueNode
-import system.nodes.operators.AddNode
-import system.nodes.operators.MultiplyNode
+import system.nodes.AddNode
+import system.nodes.MultiplyNode
 
 object Test {
 
   @JvmStatic
   fun main(args: Array<String>) {
 
-    val add = AddNode()
-    add.inputOf("a").connect(ValueNode(constant = 3f).outputOf("x"))
-    add.inputOf("b").connect(ValueNode(constant = 4f).outputOf("x"))
+    val addNode = AddNode()
+    addNode.connect("a" to ValueNode(constant = 3f).get())
+    addNode.connect("b" to ValueNode(constant = 4f).get())
 
-    val mul = MultiplyNode()
-    mul.inputOf("a").connect(add.outputOf("result"))
-    mul.inputOf("b").connect(ValueNode(constant = 5f).outputOf("x"))
+    val mulNode = MultiplyNode()
+    mulNode.connect("a" to addNode.get())
+    mulNode.connect("b" to ValueNode(constant = 5f).get())
 
-    println(mul.outputOf("result").decoratedStory())
+    println(mulNode.get().decoratedStory())
   }
 
 }
