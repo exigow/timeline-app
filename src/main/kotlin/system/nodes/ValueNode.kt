@@ -5,9 +5,15 @@ import system.sockets.OutputSocket
 
 class ValueNode(private val constant: Float) : Node {
 
+  override fun name() = "Value"
+
   private val outputX = object : OutputSocket {
 
     override fun value() = constant
+
+    override fun story() = "$constant"
+
+    override fun decoratedStory() = story()
 
   }
 
