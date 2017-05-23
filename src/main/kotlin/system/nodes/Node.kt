@@ -13,9 +13,9 @@ interface Node {
 
   fun valueOf(name: String) = outputs()[name]!!.value()
 
-  fun get(name: String) = outputs()[name]!!
+  fun output(name: String) = outputs()[name]!!
 
-  fun get(): OutputSocket {
+  fun output(): OutputSocket {
     if (outputs().size == 1)
       return outputs().values.iterator().next()
     throw RuntimeException()

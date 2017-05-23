@@ -1,35 +1,37 @@
 package system.world
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import system.nodes.Node
-import ktx.math.*
-import system.sockets.InputSocket
 
 class NodeState(private val node: Node) {
 
   val position = Vector2()
-  
-  fun debugRender(shape: ShapeRenderer) {
-    val width = 64f
-    val height = 64f + socketsStreakSize() * 16f
-    shape.rect(position.x, position.y, width, height)
-    var ii = 0
-    for (input in node.inputs())
-      shape.circle(position.x, position.y + ii++ * 16f, 8f)
-    var io = 0
-    for (input in node.outputs())
-      shape.circle(position.x + width, position.y + io++ * 16f, 8f)
+
+  fun bodyRectangle() = Rectangle(position.x + 8f, position.y, width() - 16f, height())
+
+  fun headerRectangle() = Rectangle(position.x, position.y - 24f, width(), 24f)
+
+  fun inputSocketNamesToRectangles() = calculateSocketNamesToRectangles(node.inputs().map { it.key }, 0f)
+
+  fun outputSocketNamesToRectangles() = calculateSocketNamesToRectangles(node.outputs().map { it.key }, width())
+
+  private fun calculateSocketNamesToRectangles(names: List<String>, additionalWidth: Float): Map<String, Rectangle>  {
+    var offset = -1f
+    val socketSize = 16f
+    return names
+      .associate {
+        offset += 1f
+        it to Rectangle(position.x + additionalWidth - socketSize / 2f, position.y - socketSize / 2f + offset * socketSize * 2 + 24f, socketSize, socketSize)
+      }
   }
 
-  /*fun inputSocketPlaces(): Map<InputSocket, Vector2> {
-    val mut = Vector2(0f, 0f)
-    return node.inputs().values.associate {
-      mut.y += 16f
-      it to position + mut
-    }
-  }*/
+  private fun width() = 128f
+
+  private fun height() = 16f + socketsStreakSize() * 32f
 
   private fun socketsStreakSize() = Math.max(node.inputs().size, node.outputs().size)
+
+  fun allRectangles() = listOf(bodyRectangle()) + headerRectangle() + inputSocketNamesToRectangles().map { it.value } + outputSocketNamesToRectangles().map { it.value }
 
 }
