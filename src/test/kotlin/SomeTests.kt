@@ -15,7 +15,7 @@ object SomeTests {
     mulNode.connect("a" to addNode.output())
     mulNode.connect("b" to ValueNode(constant = 5f).output())
 
-    println(mulNode.output().decoratedStory())
+    println(mulNode.output().value())
   }
 
 }

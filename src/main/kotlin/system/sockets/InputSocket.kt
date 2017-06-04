@@ -19,10 +19,4 @@ class InputSocket(private val whenDisconnectedValue: Float = 0f) {
     return connectedTo!!.value()
   }
 
-  fun connectionStory(): String {
-    if (connectedTo == null)
-      return "disconnected"
-    return connectedTo!!.decoratedStory()
-  }
-
 }

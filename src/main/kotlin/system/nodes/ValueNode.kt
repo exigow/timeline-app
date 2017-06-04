@@ -11,10 +11,6 @@ class ValueNode(private val constant: Float) : Node {
 
     override fun value() = constant
 
-    override fun story() = "value $constant"
-
-    override fun decoratedStory() = story()
-
   }
 
   override fun inputs() = emptyMap<String, InputSocket>()
