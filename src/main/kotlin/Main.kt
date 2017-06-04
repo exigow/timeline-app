@@ -23,7 +23,13 @@ class Main {
     renderer.renderCircle(camera.mousePosition(), 4f)
     manager.rectangles().forEach { renderer.renderRectangle(it) }
     if (manager.isHoveringAny(camera.mousePosition()))
-      renderer.renderRectangle(manager.hoveredRectangle(camera.mousePosition()).inflate(4f))
+      renderer.renderRectangle(manager.hoveredRectangle(camera.mousePosition()).inflate(-4f))
+    val hovered = manager.hoveredContainer(camera.mousePosition())
+    if (hovered != null) {
+      renderer.renderRectangle(hovered.wrappingRectangle().inflate(4f))
+      val hoveredElement = hovered.elements().filter { it.rectangle.contains(camera.mousePosition()) }.first()
+      println(hovered.node.name() + ", " + hoveredElement.name)
+    }
   }
 
   private fun Rectangle.inflate(amount: Float) = Rectangle(x - amount, y - amount, width + amount * 2, height + amount * 2)

@@ -20,4 +20,8 @@ class ContainerManager {
 
   fun hoveredRectangle(pointer: Vector2) = rectangles().filter { rect -> rect.contains(pointer) }.first()
 
+  fun hoveredContainer(pointer: Vector2) = containers
+    .filter { container -> container.rectangles().filter { rect -> rect.contains(pointer) }.any() }
+    .firstOrNull()
+
 }
