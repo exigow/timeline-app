@@ -10,6 +10,6 @@ class LazyMainApplicationRunner : KotlinApplication() {
     main = Main()
   }
 
-  override fun render(delta: Float) = main.loop(delta)
+  override fun render(delta: Float) = main.loop()
 
 }

@@ -1,35 +1,31 @@
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import ktx.app.clearScreen
+import com.badlogic.gdx.math.Rectangle
 import playground.Camera
+import rendering.Renderer
+import system.container.ContainerManager
 import system.nodes.AddNode
 import system.nodes.ValueNode
-import system.world.NodeManager
 
 class Main {
 
-  private val shape = ShapeRenderer()
-  private val manager = NodeManager()
+  private val manager = ContainerManager()
   private val camera = Camera()
+  private val renderer = Renderer()
 
   init {
-    manager.put(ValueNode(3f), 128f, 128f)
-    manager.put(ValueNode(5f), 384f, 128f)
-    manager.put(AddNode(), 256f, 256f)
+    manager.put(ValueNode(3f), -128f, -128f)
+    manager.put(ValueNode(5f), -128f, 128f)
+    manager.put(AddNode(), 128f, 0f)
   }
 
-  fun loop(delta: Float) {
-    clearScreen(.125f, .125f, .125f, 1f)
-    shape.projectionMatrix.set(camera.projectionMatrix())
-    shape.begin(ShapeRenderer.ShapeType.Line)
-    shape.circle(camera.mousePosition().x, camera.mousePosition().y, 4f)
-    manager.states.flatMap { it.allRectangles() }.
-      forEach { shape.rect(it.x, it.y, it.width, it.height) }
-    val hovered = manager.states.flatMap { it.allRectangles() }
-      .filter { it.contains(camera.mousePosition()) }
-      .firstOrNull()
-    if (hovered != null)
-      shape.rect(hovered.x - 4f, hovered.y - 4f, hovered.width + 8f, hovered.height + 8f)
-    shape.end()
+  fun loop() {
+    renderer.update(camera)
+    renderer.clear()
+    renderer.renderCircle(camera.mousePosition(), 4f)
+    manager.rectangles().forEach { renderer.renderRectangle(it) }
+    if (manager.isHoveringAny(camera.mousePosition()))
+      renderer.renderRectangle(manager.hoveringRectangle(camera.mousePosition()).inflate(4f))
   }
+
+  private fun Rectangle.inflate(amount: Float) = Rectangle(x - amount, y - amount, width + amount * 2, height + amount * 2)
 
 }
