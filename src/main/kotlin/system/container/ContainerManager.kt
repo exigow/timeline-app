@@ -18,6 +18,6 @@ class ContainerManager {
 
   fun isHoveringAny(pointer: Vector2) = rectangles().filter { rect -> rect.contains(pointer) }.any()
 
-  fun hoveringRectangle(pointer: Vector2) = rectangles().filter { rect -> rect.contains(pointer) }.first()
+  fun hoveredRectangle(pointer: Vector2) = rectangles().filter { rect -> rect.contains(pointer) }.first()
 
 }

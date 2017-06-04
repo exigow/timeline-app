@@ -23,7 +23,7 @@ class Main {
     renderer.renderCircle(camera.mousePosition(), 4f)
     manager.rectangles().forEach { renderer.renderRectangle(it) }
     if (manager.isHoveringAny(camera.mousePosition()))
-      renderer.renderRectangle(manager.hoveringRectangle(camera.mousePosition()).inflate(4f))
+      renderer.renderRectangle(manager.hoveredRectangle(camera.mousePosition()).inflate(4f))
   }
 
   private fun Rectangle.inflate(amount: Float) = Rectangle(x - amount, y - amount, width + amount * 2, height + amount * 2)
