@@ -38,6 +38,8 @@ class Main {
 
       override fun touchUp(screenX: Int, screenY: Int, pointer: Int, button: Int): Boolean {
         updateDragged()
+        if (movedContainer != null)
+          manager.prioritize(movedContainer!!)
         movedContainer = null
         return true
       }

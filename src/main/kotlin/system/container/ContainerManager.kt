@@ -24,4 +24,11 @@ class ContainerManager {
     .filter { container -> container.rectangles().filter { rect -> rect.contains(pointer) }.any() }
     .firstOrNull()
 
+  fun prioritize(container: Container) {
+    val id = containers.indexOf(container)
+    containers.removeAt(id)
+    containers.add(container)
+    containers.reverse()
+  }
+
 }
