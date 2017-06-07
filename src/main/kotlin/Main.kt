@@ -33,6 +33,9 @@ class Main {
           relativePointer.set(movedContainer!!.position.minus(camera.mousePosition()))
           updateDragged()
         }
+        if (hoveredElement.name === "delete") {
+          manager.delete(hovered)
+        }
         return true
       }
 

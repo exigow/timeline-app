@@ -14,6 +14,10 @@ class ContainerManager {
     containers.add(state)
   }
 
+  fun delete(container: Container) {
+    containers.remove(container)
+  }
+
   fun rectangles() = containers.flatMap { it.rectangles() }
 
   fun isHoveringAny(pointer: Vector2) = rectangles().filter { rect -> rect.contains(pointer) }.any()

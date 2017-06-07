@@ -14,7 +14,7 @@ class Container(val node: Node) {
   fun elements() = listOf(
     Element("header", Rectangle(position.x, position.y, width, headerHeight)),
     Element("body", Rectangle(position.x, position.y + headerHeight, width, height)),
-    Element("settings", Rectangle(position.x + width - headerHeight, position.y, headerHeight, headerHeight))
+    Element("delete", Rectangle(position.x + width - headerHeight, position.y, headerHeight, headerHeight))
   ).reversed()
 
   fun rectangles() = elements().map { it.rectangle }
