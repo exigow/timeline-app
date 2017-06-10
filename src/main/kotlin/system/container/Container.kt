@@ -19,6 +19,8 @@ class Container(val node: Node) {
     Element("delete", Rectangle(position.x + width - headerHeight, position.y, headerHeight, headerHeight))
   ).reversed()
 
+  // todo fun zwracające elementy socketów użyta w #elements
+
   fun rectangles() = elements().map { it.rectangle }
 
   fun rectangle(name: String) = elements().filter { it.name == name }.map { it.rectangle }.first()

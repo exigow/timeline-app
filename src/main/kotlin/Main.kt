@@ -17,7 +17,7 @@ class Main {
   private val manager = ContainerManager()
   private val camera = Camera()
   private val renderer = DebugRenderer()
-  private val containerRenderer = ContainerRenderer();
+  private val containerRenderer = ContainerRenderer()
 
   init {
     Gdx.input.inputProcessor = object : InputAdapter() {
@@ -71,7 +71,7 @@ class Main {
     renderer.update(camera)
     containerRenderer.update(camera)
     renderer.clear()
-    manager.containers.forEach { containerRenderer.render(it) }
+    //manager.containers.forEach { containerRenderer.render(it) }
 
     manager.rectangles().forEach { renderer.renderRectangle(it) }
     if (manager.isHoveringAny(camera.mousePosition()))
