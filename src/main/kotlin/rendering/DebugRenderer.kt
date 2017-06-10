@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2
 import ktx.app.clearScreen
 import playground.Camera
 
-class Renderer {
+class DebugRenderer {
 
   private val shape = ShapeRenderer()
 
@@ -17,7 +17,7 @@ class Renderer {
     shape.projectionMatrix.set(camera.projectionMatrix())
   }
 
-  fun clear() = clearScreen(.125f, .125f, .125f, 1f)
+  fun clear() = clearScreen(.25f, .25f, .25f, 1f)
 
   fun renderCircle(position: Vector2, radius: Float, color: Color = Color.WHITE, isFilled: Boolean = false)
     = decorate({ shapeCircle(position, radius) }, color, isFilled)
